@@ -1,0 +1,100 @@
+STEP 1: CREATE A FOLDER
+  mkdir git_basic
+  (or create it in File Explorer)
+ 
+STEP 2: ENTER THE FOLDER
+  cd C:\Users\man\git_basic
+ 
+STEP 3: git init
+  Creates a hidden .git folder. Git stores all versions and history there.
+  The folder is now a repository.
+  Example: folder git_basic -> run git init inside it.
+ 
+STEP 4: git status
+  Shows the state of the folder: what is untracked, modified, or staged.
+  Run it any time. It changes nothing.
+ 
+  Untracked file = a file Git sees but is not yet tracking.
+                   It is in no commit and not in the staging area.
+                   git status lists it in red.
+ 
+STEP 5: git add
+  Moves a file into the staging area.
+  Staged file = a file marked to go into the next commit.
+ 
+  git add file.txt        one file
+  git add .               everything in the folder
+  git add *.sql *.txt     only those file types (space-separated, no comma)
+ 
+  After git add, git status shows the file in green. That means it worked.
+ 
+STEP 6: git commit
+  Saves the staged files as a version (a commit).
+  git commit -m "message"
+  -m means message, written inside double quotes.
+  Example: git commit -m "first version"
+ 
+STEP 7: ANOTHER FILE
+  Create a second file. git status shows it as untracked.
+  git add second.txt
+  git commit -m "second file"
+ 
+STEP 8: git commit --amend
+  Fixes the LAST commit instead of making a new one.
+  Use it to add a forgotten file or change the message.
+ 
+  git add forgotten.txt
+  git commit --amend -m "new message"
+ 
+  The order matters: git add first, then amend.
+  Amend creates a new hash for that commit.
+  Never amend a commit you already pushed.
+ 
+STEP 9: git log
+  Shows all commits, newest first.
+  Each commit has a hash: a long unique code of letters and numbers.
+  The hash is used to switch to or inspect that commit.
+ 
+  git log --oneline       one line per commit (short hash + message)
+ 
+STEP 10: git clone
+  Makes a full copy of a repository: same files, same commits, same history.
+  git clone C:\Users\man\git_basic git_copy
+ 
+  Warning: a clone on the same disk is NOT a backup.
+  If the disk fails or a virus hits, both copies are lost.
+  A real backup is GitHub or a clone on another drive.
+ 
+STEP 11: git diff
+  Shows what changed in a file (the exact lines).
+  Lines starting with - are removed. Lines starting with + are added.
+ 
+  git diff                shows UNSTAGED changes (edited, not yet added)
+  git add file.txt        stages the change
+  git diff                now shows nothing
+  git diff --staged       shows staged changes (added, not yet committed)
+ 
+  Example: apples: 5 changed to apples: 12
+    -apples: 5
+    +apples: 12
+ 
+STEP 12: git show
+  Shows one commit: hash, author, date, message, and the changes in it.
+  Default is the latest commit (HEAD).
+ 
+  git show                latest commit
+  git show HEAD~1         the commit before the latest
+  git show <hash>         any commit by its hash
+ 
+QUICK FLOW
+  edit -> git diff -> git add -> git diff --staged -> git commit -m "..."
+  Check state any time: git status. Check history: git log --oneline.
+ 
+REMEMBER
+  untracked  = Git sees it, not tracking it
+  staged     = marked for the next commit
+  committed  = saved as a version
+  git diff   = unstaged changes only
+  --amend    = rewrites the last commit (new hash)
+  clone      = copy of history, not a backup on the same disk
+ 
